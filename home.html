@@ -1,0 +1,1036 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>H&M Clone</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Open Sans", sans-serif;
+    }
+
+    body {
+      background-color: #fff;
+      color: #000;
+      overflow-x: hidden;
+    }
+
+    /* Header Styles */
+    .top-banner {
+      display: flex;
+      color: red;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgb(194, 191, 191);
+      padding: 10px 20px;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    .main-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+      border-bottom: 1px solid rgb(194, 191, 191);
+    }
+
+    .main-nav {
+      display: flex;
+      gap: 25px;
+      align-items: center;
+    }
+
+    .main-nav img {
+      width: 50px;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      margin-bottom: 0;
+    }
+
+    .nav-links li a {
+      color: black;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .nav-links li a:hover {
+      color: gray;
+    }
+
+    .nav-icons {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      margin-bottom: 0;
+    }
+
+    .nav-icons img {
+      width: 20px;
+    }
+
+    .sidebar-btn {
+      background: none;
+      border: none;
+      display: none;
+    }
+
+    /* Offcanvas menu */
+    .offcanvas-menu {
+      padding: 20px;
+    }
+
+    .menu-categories {
+      border-bottom: 1px solid rgb(194, 191, 191);
+      padding-bottom: 20px;
+    }
+
+    .menu-categories ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      padding-left: 0;
+    }
+
+    .menu-categories ul li a {
+      text-decoration: none;
+      color: gray;
+      font-weight: 500;
+    }
+
+    .menu-categories ul li a:hover {
+      color: black;
+      text-decoration: underline;
+    }
+
+    .menu-links {
+      list-style: none;
+      padding-left: 0;
+      padding-top: 20px;
+    }
+
+    .menu-links li {
+      margin-bottom: 15px;
+    }
+
+    .menu-links li a {
+      text-decoration: none;
+      color: black;
+      font-weight: 500;
+    }
+
+    /* Hero section */
+    .hero-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .hero-caption {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+    }
+
+    .hero-caption h5 {
+      font-size: 16px;
+      font-weight: 500;
+      margin: 0;
+    }
+
+    .section-heading {
+      text-align: left;
+      font-size: 18px;
+      margin: 15px 20px;
+      font-weight: 500;
+    }
+
+    /* Image boxes */
+    .image-row {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+    }
+
+    .image-box {
+      flex: 1;
+      min-width: 300px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .image-box img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      display: block;
+    }
+
+    .image-caption {
+      padding: 15px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .image-caption h5 {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .image-caption a {
+      font-size: 15px;
+      color: #000;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    /* Product cards */
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 30px 20px 15px;
+    }
+
+    .section-header h5 {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .section-header a {
+      font-size: 15px;
+      color: #000;
+      text-decoration: underline;
+    }
+
+    .product-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      padding: 0 10px;
+    }
+
+    .product-card {
+      width: calc(16.66% - 10px);
+      margin-bottom: 30px;
+      min-width: 150px;
+    }
+
+    .product-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Category cards */
+    .category-cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .category-card {
+      width: calc(50% - 10px);
+      max-width: 400px;
+      position: relative;
+    }
+
+    .category-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .card-caption {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      color: #000;
+    }
+
+    .card-caption h5 {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .card-caption h6 {
+      font-size: 15px;
+      font-weight: 500;
+      margin: 5px 0 0;
+      text-decoration: underline;
+    }
+
+    /* Footer Styles */
+    .desktop-footer {
+      display: flex;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: 40px auto 60px;
+      padding: 0 20px;
+      gap: 40px;
+      justify-content: flex-start;
+    }
+
+    .footer-column {
+      min-width: 140px;
+      flex: 1 1 140px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .footer-signup {
+      flex: 2 1 280px;
+      max-width: 320px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .footer-column h3 {
+      margin: 0 0 16px 0;
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    .footer-column ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .footer-column li {
+      margin-bottom: 10px;
+      font-weight: 400;
+      font-size: 14px;
+      cursor: default;
+    }
+
+    .footer-signup a {
+      color: #000;
+      font-weight: 600;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .footer-signup a:hover {
+      color: #444;
+    }
+
+    /* Mobile menu */
+    .mobile-menu {
+      display: none;
+    }
+
+    .menu-item {
+      position: relative;
+      padding: 15px 20px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .menu-title {
+      font-weight: 600;
+    }
+
+    .toggle-btn {
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      position: absolute;
+      right: 20px;
+      top: 15px;
+    }
+
+    .dropdown-content {
+      display: none;
+      padding: 10px 0 0;
+    }
+
+    .menu-item.active .dropdown-content {
+      display: block;
+    }
+
+    /* Bottom section */
+    .region-section {
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .region-section img {
+      width: 70px;
+    }
+
+    .region-section p {
+      margin: 0;
+    }
+
+    .region-section a {
+      color: #000;
+      text-decoration: underline;
+      margin-left: 5px;
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px;
+      border-top: 1px solid #eee;
+    }
+
+    .social-icons {
+      list-style: none;
+      display: flex;
+      gap: 15px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .social-icons li {
+      font-size: 18px;
+    }
+     .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .popup-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .signin-popup {
+            background-color: #fff;
+            width: 100%;
+            max-width: 450px;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.2);
+            transform: translateY(50px);
+            transition: transform 0.4s ease;
+        }
+        
+        .popup-overlay.active .signin-popup {
+            transform: translateY(0);
+        }
+        
+        .popup-header {
+            background-color: #f8f8f8;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .popup-header h2 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #000;
+        }
+        
+        .close-popup {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 20px;
+            cursor: pointer;
+            color: #666;
+            transition: color 0.3s;
+        }
+        
+        .close-popup:hover {
+            color: #000;
+        }
+        
+        .popup-body {
+            padding: 25px;
+        }
+        
+        .popup-text {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #999;
+        }
+        
+        .continue-btn {
+            background-color: #000;
+            color: #fff;
+            border: none;
+            width: 100%;
+            padding: 15px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            border-radius: 4px;
+        }
+        
+        .continue-btn:hover {
+            background-color: #333;
+        }
+        
+        .security-note {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .membership-section {
+            background-color: #f8f8f8;
+            padding: 20px;
+            text-align: center;
+            margin-top: 20px;
+            border-radius: 4px;
+        }
+        
+        .membership-section h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #000;
+        }
+        
+        .membership-section p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .read-more {
+            color: #000;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 14px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+    /* Media Queries */
+    @media (max-width: 992px) {
+      .product-card {
+        width: calc(25% - 10px);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      
+      .sidebar-btn {
+        display: block;
+      }
+      
+      .image-box {
+        min-width: 100%;
+      }
+      
+      .product-card {
+        width: calc(33.33% - 10px);
+      }
+      
+      .category-card {
+        width: 100%;
+      }
+      
+      .desktop-footer {
+        display: none;
+      }
+      
+      .mobile-menu {
+        display: block;
+      }
+      
+      .footer-bottom {
+        flex-direction: column;
+        gap: 15px;
+      }
+      .signin-popup {
+                width: 90%;
+                margin: 0 5%;
+            }
+    }
+
+    @media (max-width: 576px) {
+      .product-card {
+        width: calc(50% - 10px);
+      }
+      
+      .hero-caption {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+      
+      .image-caption {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+      
+      .social-icons {
+        flex-wrap: wrap;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Top Banner -->
+  <div class="top-banner">
+    <p>Hoodies & Sweatshirts from ₹799</p>
+    <p style="font-size: 25px; font-weight: 100;">+</p>
+  </div>
+
+  <!-- Main Header -->
+  <header class="main-header">
+    <div class="main-nav">
+      <img src="H&M.png" alt="H&M Logo">
+      <ul class="nav-links">
+        <li><a href="#">LADIES</a></li>
+        <li><a href="#">MEN</a></li>
+        <li><a href="#">KIDS</a></li>
+        <li><a href="#">HOME</a></li>
+      </ul>
+    </div>
+    <div>
+      <ul class="nav-icons">
+        <li><img src="Search.png" alt="Search"></li>
+        <button class="sign-in-btn" id="openPopup" style="background-color: transparent; border: none;"><li><img src="Profile.png" alt="Profile"></li></button>
+        <a href="fav.html"><li><img src="Heart.png" alt="Wishlist"></li></a>
+        <a href="cart.html"><li><img src="Bag.png" alt="Shopping Bag"></li></a>
+        <li>
+          <button class="sidebar-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+            aria-controls="offcanvasRight">
+            <img src="image.png" alt="Menu">
+          </button>
+        </li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Offcanvas Menu -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+      <h5 id="offcanvasRightLabel">Menu</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body offcanvas-menu">
+      <div class="menu-categories">
+        <ul>
+          <li><a href="#">LADIES</a></li>
+          <li><a href="#">MEN</a></li>
+          <li><a href="#">KIDS</a></li>
+          <li><a href="#">HOME</a></li>
+        </ul>
+      </div>
+      <div>
+        <ul class="menu-links">
+          <li><a href="#">Sign In</a></li>
+          <li><a href="#">My Account</a></li>
+          <li><a href="#">My Preferences</a></li>
+          <li><a href="#">Customer Service</a></li>
+          <li><a href="#">Find a Store</a></li>
+          <li><a href="#">Newsletter</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-image">
+      <img src="images/home/img1.avif" alt="Hero Banner">
+    </div>
+    <div class="hero-caption">
+      <h5>TIMELESS SEASON LOOKS</h5>
+      <h5>SHOP NOW</h5>
+    </div>
+    <h6 class="section-heading">Transitional staples</h6>
+    <div class="image-row">
+      <div class="image-box">
+        <img src="images/home/img2.avif" alt="Redefined essentials">
+        <div class="image-caption">
+          <h5>Redefined essentials</h5>
+          <a href="#">Shop now</a>
+        </div>
+      </div>
+      <div class="image-box">
+        <img src="images/home/img3.avif" alt="Autumn minimalist">
+        <div class="image-caption">
+          <h5>Autumn minimalist</h5>
+          <a href="#">Shop now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- New In Section -->
+  <section class="new-in-section">
+    <div class="section-header">
+      <h5>NEW IN</h5>
+      <a href="#">VIEW ALL</a>
+    </div>
+    <div class="product-grid">
+      <div class="product-card">
+        <img src="images/home/img4.avif" alt="Product 1">
+      </div>
+      <div class="product-card">
+        <img src="images/home/img5.avif" alt="Product 2">
+      </div>
+      <div class="product-card">
+        <img src="images/home/img6.avif" alt="Product 3">
+      </div>
+      <div class="product-card">
+        <img src="images/home/img7.avif" alt="Product 4">
+      </div>
+      <div class="product-card">
+        <img src="images/home/img8.avif" alt="Product 5">
+      </div>
+      <div class="product-card">
+        <img src="images/home/img9.avif" alt="Product 6">
+      </div>
+      <div class="product-card">
+        <img src="images/home/img10.avif" alt="Product 7">
+      </div>
+      <div class="product-card">
+        <img src="images/home/img11.avif" alt="Product 8">
+      </div>
+      <div class="product-card">
+        <img src="images/home/img12.avif" alt="Product 9">
+      </div>
+      <div class="product-card">
+        <img src="images/home/img13.avif" alt="Product 10">
+      </div>
+      <div class="product-card">
+        <img src="images/home/img14.avif" alt="Product 11">
+      </div>
+      <div class="product-card">
+        <img src="images/home/img15.avif" alt="Product 12">
+      </div>
+    </div>
+  </section>
+
+  <!-- Category Cards -->
+  <section class="category-section">
+    <div class="category-cards">
+      <div class="category-card">
+        <img src="images/home/img16.avif" alt="Bedding">
+        <div class="card-caption">
+          <h5>BEDDING</h5>
+          <h6>EXPLORE</h6>
+        </div>
+      </div>
+      <div class="category-card">
+        <img src="images/home/img17.avif" alt="Tableware">
+        <div class="card-caption">
+          <h5>TABLEWARE</h5>
+          <h6>EXPLORE</h6>
+        </div>
+      </div>
+      <div class="category-card">
+        <img src="images/home/img18.avif" alt="Decoration">
+        <div class="card-caption">
+          <h5>DECORATION</h5>
+          <h6>EXPLORE</h6>
+        </div>
+      </div>
+      <div class="category-card">
+        <img src="images/home/img19.avif" alt="Cushion Cover">
+        <div class="card-caption">
+          <h5>CUSHION COVER</h5>
+          <h6>EXPLORE</h6>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Desktop Footer -->
+  <footer class="desktop-footer">
+    <div class="footer-column">
+      <h3>Shop</h3>
+      <ul>
+        <li>LADIES</li>
+        <li>MEN</li>
+        <li>KIDS</li>
+        <li>HOME</li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h3>Corporate Info</h3>
+      <ul>
+        <li>CAREER AT H&amp;M</li>
+        <li>ABOUT H&amp;M GROUP</li>
+        <li>SUSTAINABILITY H&amp;M GROUP</li>
+        <li>PRESS</li>
+        <li>INVESTOR RELATIONS</li>
+        <li>CORPORATE GOVERNANCE</li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h3>Help</h3>
+      <ul>
+        <li>CUSTOMER SERVICE</li>
+        <li>MY H&amp;M</li>
+        <li>FIND A STORE</li>
+        <li>LEGAL &amp; PRIVACY</li>
+        <li>CONTACT</li>
+        <li>SECURE SHOPPING</li>
+        <li>COOKIE NOTICE</li>
+        <li>COOKIE SETTINGS</li>
+      </ul>
+    </div>
+    <div class="footer-signup">
+      <p>Sign up now and be the first to know about exclusive offers, latest fashion news &amp; style tips!</p>
+      <p><a href="#" aria-label="Read more about exclusive offers, latest fashion news, and style tips">READ MORE</a></p>
+    </div>
+  </footer>
+
+  <!-- Mobile Footer Menu -->
+  <div class="mobile-menu">
+    <div class="menu-item">
+      <span class="menu-title">SHOP</span>
+      <button class="toggle-btn">+</button>
+      <div class="dropdown-content">
+        <p>LADIES</p>
+        <p>MEN</p>
+        <p>KIDS</p>
+        <p>HOME</p>
+      </div>
+    </div>
+
+    <div class="menu-item">
+      <span class="menu-title">CORPORATE INFO</span>
+      <button class="toggle-btn">+</button>
+      <div class="dropdown-content">
+        <p>CAREER AT H&M</p>
+        <p>ABOUT H&M GROUP</p>
+        <p>SUSTAINABILITY H&M GROUP</p>
+        <p>PRESS</p>
+        <p>INVESTOR RELATIONS</p>
+        <p>CORPORATE GOVERNANCE</p>
+      </div>
+    </div>
+
+    <div class="menu-item">
+      <span class="menu-title">HELP</span>
+      <button class="toggle-btn">+</button>
+      <div class="dropdown-content">
+        <p>CUSTOMER SERVICE</p>
+        <p>MY H&M</p>
+        <p>FIND A STORE</p>
+        <p>LEGAL & PRIVACY</p>
+        <p>CONTACT</p>
+        <p>SECURE SHOPPING</p>
+        <p>COOKIE NOTICE</p>
+        <p>COOKIE SETTINGS</p>
+      </div>
+    </div>
+
+    <div class="menu-item">
+      <span class="menu-title">NEWSLETTER SIGNUP</span>
+      <button class="toggle-btn">+</button>
+      <div class="dropdown-content">
+        <p>Sign up now and be the first to know about exclusive offers, latest fashion news & style tips!</p>
+        <p><a href="#">READ MORE</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Region Section -->
+  <div class="region-section">
+    <img src="438-4383499_free-hbo-logo-transparent-black-h-m-logo-removebg-preview.png" alt="H&M Logo">
+    <p>INDIA (Rs.) <a href="#">CHANGE REGION</a></p>
+  </div>
+
+  <!-- Footer Bottom -->
+  <div class="footer-bottom">
+    <div>
+      <p>The content of this site is copyright-protected and is the property of H & M Hennes & Mauritz AB.</p>
+    </div>
+    <div>
+      <ul class="social-icons">
+        <li><i class="fab fa-instagram"></i></li>
+        <li><i class="fab fa-tiktok"></i></li>
+        <li><i class="fab fa-spotify"></i></li>
+        <li><i class="fab fa-youtube"></i></li>
+        <li><i class="fab fa-pinterest"></i></li>
+        <li><i class="fab fa-facebook"></i></li>
+      </ul>
+    </div>
+  </div>
+   
+  <!-- pop-up box -->
+   <div class="popup-overlay" id="popupOverlay">
+        <div class="signin-popup">
+            <div class="popup-header">
+                <h2>SIGN IN</h2>
+                <div class="close-popup" id="closePopup">
+                    <i class="fas fa-times"></i>
+                </div>
+            </div>
+            
+            <div class="popup-body">
+                <p class="popup-text">Sign in with your email or sign up to become an H&M member.</p>
+                
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" placeholder="Email">
+                </div>
+                
+                <button class="continue-btn">CONTINUE</button>
+                
+                <p class="security-note">All data is kept secure</p>
+                
+                <div class="membership-section">
+                    <h3>H&M MEMBERSHIP</h3>
+                    <p>Sign up now and be the first to know about exclusive offers, latest fashion news & style tips!</p>
+                    <a href="#" class="read-more">READ MORE</a>
+                </div>
+            </div>
+        </div>
+    </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+  <script>
+    document.querySelectorAll('.toggle-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        const menuItem = button.parentElement;
+        const isActive = menuItem.classList.contains('active');
+        
+        // Close all other menu items
+        document.querySelectorAll('.menu-item').forEach(item => {
+          item.classList.remove('active');
+        });
+        
+        // Toggle current menu item
+        if (!isActive) {
+          menuItem.classList.add('active');
+          button.textContent = '-';
+        } else {
+          menuItem.classList.remove('active');
+          button.textContent = '+';
+        }
+      });
+    });
+    // pop-up
+    const openPopupBtn = document.getElementById('openPopup');
+        const closePopupBtn = document.getElementById('closePopup');
+        const popupOverlay = document.getElementById('popupOverlay');
+        
+        // Open popup when clicking sign in button
+        openPopupBtn.addEventListener('click', () => {
+            popupOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        });
+        
+        // Close popup when clicking close button
+        closePopupBtn.addEventListener('click', () => {
+            popupOverlay.classList.remove('active');
+            document.body.style.overflow = 'auto'; // Enable scrolling
+        });
+        
+        // Close popup when clicking outside of it
+        popupOverlay.addEventListener('click', (e) => {
+            if (e.target === popupOverlay) {
+                popupOverlay.classList.remove('active');
+                document.body.style.overflow = 'auto'; // Enable scrolling
+            }
+        });
+        
+        // Close popup with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && popupOverlay.classList.contains('active')) {
+                popupOverlay.classList.remove('active');
+                document.body.style.overflow = 'auto'; // Enable scrolling
+            }
+        });
+        
+        // Form validation
+        const emailInput = document.getElementById('email');
+        const continueBtn = document.querySelector('.continue-btn');
+        
+        continueBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            
+            if (!emailInput.value) {
+                emailInput.style.borderColor = '#ff0000';
+                alert('Please enter your email address');
+                return;
+            }
+            
+            if (!isValidEmail(emailInput.value)) {
+                emailInput.style.borderColor = '#ff0000';
+                alert('Please enter a valid email address');
+                return;
+            }
+            
+            // If validation passes
+            emailInput.style.borderColor = '#ddd';
+            alert('Sign in process would continue...');
+            // Here you would typically submit the form or make an API call
+        });
+        
+        function isValidEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+  </script>
+</body>
+
+</html>
